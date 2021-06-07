@@ -4,13 +4,13 @@ package model;
 public class CreateJunkFood {
     private String mealName;
     private double basePrice;
-    private int ingredientNumber;
+    private int ingredientsNumber;
     private double pricePerIngredient;
 
-    public CreateJunkFood(String mealName, double basePrice, int ingredientNumber, double pricePerIngredient) {
+    public CreateJunkFood(String mealName, double basePrice, int ingredientsNumber, double pricePerIngredient) {
         this.mealName = mealName;
         this.basePrice = basePrice;
-        this.ingredientNumber = ingredientNumber;
+        this.ingredientsNumber = ingredientsNumber;
         this.pricePerIngredient = pricePerIngredient;
     }
 
@@ -23,8 +23,8 @@ public class CreateJunkFood {
     }
 
 
-    public int getIngredientNumber() {
-        return ingredientNumber;
+    public int getIngredientsNumber() {
+        return ingredientsNumber;
     }
 
 
@@ -33,8 +33,8 @@ public class CreateJunkFood {
     }
 
 
-    public  double getTotalPrice() {
-        return (getBasePrice() + (getIngredientNumber() * getPricePerIngredient()));
+    public double getTotalPrice() {
+        return (getBasePrice() + (getIngredientsNumber() * getPricePerIngredient()));
     }
 
 }

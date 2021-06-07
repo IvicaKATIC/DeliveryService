@@ -2,16 +2,16 @@ package model;
 
 // Bestellung modellieren;
 public class Order {
-    private String mealName;
+    private String orderName;
     private int numberOfMeals;
 
-    public Order(String mealName, int numberOfMeals) {
-        this.mealName = mealName;
+    public Order(String orderName, int numberOfMeals) {
+        this.orderName = orderName;
         this.numberOfMeals = numberOfMeals;
     }
 
-    public String getMealName() {
-        return mealName;
+    public String getOrderName() {
+        return orderName;
     }
 
     public int getNumberOfMeals() {

@@ -2,6 +2,9 @@ package bl;
 
 import model.CreateJunkFood;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,9 +15,7 @@ public class CreateJunkFoodBl {
     // Datentyp der Elemente in der Liste ist Generics <CreateJunkFood>;
     private final List<CreateJunkFood> foodList = new ArrayList<>();
 
-
     public void toAdmin() {
-
         // Objekt vom CreateJunkFoodBl erzeugen
         CreateJunkFoodBl createJunkFoodBl = new CreateJunkFoodBl();
         // Hauptmenü Administrator;
@@ -151,13 +152,14 @@ public class CreateJunkFoodBl {
         System.out.println("Hallo Admin! Gib bitte das Passwort ein!");
         System.out.println("(ACHTUNG: Du hast 3 Versuche):");
         password = scanner.nextLine();
-        while (!password.equalsIgnoreCase("DeliveryService") && i < 3){
+        while (!password.equalsIgnoreCase("DeliveryService") && i < 3) {
             System.out.println("ERROR: PASSWORT FALLSCH: NEUER VERSUCH!");
             password = scanner.nextLine();
             i++;
-        }if (password.equalsIgnoreCase("DeliveryService")){
+        }
+        if (password.equalsIgnoreCase("DeliveryService")) {
             System.out.println("Zugang gewährt!");
-        }else {
+        } else {
             System.out.println("ERROR: Zu viele Versuche! ZUGANG VERWEIGERT!");
             System.out.println("Wende dich an den System-Administrator!");
             System.exit(0);

@@ -19,7 +19,6 @@ public class DSManager {
                 System.out.println("Wählen Sie bitte zwischen 1, 2 oder 3!");
                 useCase = scanner.nextLine();
             }
-
             switch (useCase) {
                 case "1":
                     junkFoodBl.toAdmin();
@@ -38,7 +37,6 @@ public class DSManager {
 
         }
     }
-
 }
 
 

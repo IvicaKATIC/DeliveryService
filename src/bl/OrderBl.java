@@ -24,17 +24,16 @@ public class OrderBl {
             while (!(userChoice.equals("1") || userChoice.equals("2") || userChoice.equals("3"))) {
                 System.out.println("ACHTUNG: Ihre Eingabe würde nicht erkannt!");
                 System.out.println("Wählen Sie bitte zwischen 1 , 2 oder 3!");
-                scanner.nextLine();
+                userChoice = scanner.next();
             }
-            int userInput = Integer.parseInt(userChoice);
-            switch (userInput) {
-                case 1:
+            switch (userChoice) {
+                case "1":
                     orderBl.addOrder();
                     break;
-                case 2:
+                case "2":
                     orderBl.listOrder();
                     break;
-                case 3:
+                case "3":
                     System.out.println("Sie haben das Programm beendet!");
                     System.exit(0);
                     break;
@@ -54,31 +53,31 @@ public class OrderBl {
         Order order = new Order(orderName, numberOfMeals);
         orderList.add(order);
         System.out.println("Die Bestellung wurde hinzugefügt!");
-        System.out.println("Wollen Sie fortfahren? (Ja // Nein)");
+        System.out.println("Wollen Sie noch was bestellen?");
+        System.out.println("(Bitte Ja oder Nein eintippen!)");
         String answer = scanner.nextLine();
-        if (answer.equalsIgnoreCase("Nein")) {
-            System.out.println("Sie haben das Programm beendet!");
-            System.out.println("Bis zum nächsten mal!");
-            System.exit(0);
+        if (!(answer.equalsIgnoreCase("Ja") || answer.equalsIgnoreCase("Nein"))) {
+            System.out.println("ERROR: Wählen Sie bitte zwischen Ja oder Nein!:");
+            scanner.nextLine();
+        } else if (answer.equalsIgnoreCase("Nein")) {
+            listOrder();
         } else {
-            System.out.println("Wollen Sie noch was bestellen?(Ja // Nein");
-            answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase("Nein")) {
-                listOrder();
-            }
+            addOrder();
         }
     }
+
     // ERROR!!!! Die Methode wiederholt sich;
     private String getOrderName() {
         boolean correctInput = false;
         String orderName = null;
         while (!correctInput) {
-            System.out.println("Was möchten Sie bestellen?");
+            System.out.println("Was möchten Sie bestellen?");//---> Diese Meldung kommt 2 mal hintereinander;
             System.out.println("Pizza, Burger oder Hotdog?");
             orderName = scanner.nextLine();
             if (!(orderName.equalsIgnoreCase("Pizza") || orderName.equalsIgnoreCase("Burger") ||
                     orderName.equalsIgnoreCase("Hotdog"))) {
-                System.out.println("ERROR: Ihre eingabe wurde nicht erkannt!Wählen Sie bitte zwischen Pizza, Burger oder Hotdog!");
+                System.out.println("ERROR: Ihre Eingabe wurde nicht erkannt!");
+                System.out.println("Wählen Sie bitte zwischen Pizza, Burger oder Hotdog!");
             } else correctInput = true;
         }
         return orderName;
@@ -88,13 +87,15 @@ public class OrderBl {
         boolean correctInput = false;
         String numberOfMeals = null;
         while (!correctInput) {
-            System.out.println("Wieviele " + getOrderName() + " wollen Sie bestellen?:");
+            System.out.println("Wie viele " + getOrderName() + "  wollen Sie bestellen?:");
             numberOfMeals = scanner.nextLine();
-            if (!Character.isDigit(numberOfMeals.charAt(0))) {
-                System.out.println("ERROR: Geben Sie bitte eine Zahl ein!");
-            } else if (numberOfMeals.contains(",")) {
-                System.out.println("ERROR: Bitte den Punkt statt Koma verwenden!");
-            } else correctInput = true;
+            if (numberOfMeals.length() >= 1) {
+                if (!Character.isDigit(numberOfMeals.charAt(0))) {
+                    System.out.println("ERROR: Bitte eine Zahl eingeben!");
+                } else if (numberOfMeals.contains(",") || numberOfMeals.contains(".")) {
+                    System.out.println("ERROR: Sie müssen eine runde Zahl eingeben!");
+                } else correctInput = true;
+            }
         }
         return Integer.parseInt(numberOfMeals);
     }
