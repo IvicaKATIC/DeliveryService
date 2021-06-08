@@ -1,6 +1,6 @@
 package model;
 
-// Bestellung modellieren;
+// Modeling orders;
 public class Order {
     private String orderName;
     private int numberOfMeals;

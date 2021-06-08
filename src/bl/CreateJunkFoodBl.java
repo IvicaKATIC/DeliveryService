@@ -2,25 +2,23 @@ package bl;
 
 import model.CreateJunkFood;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// für den Admin um JunkFood zu erstellen;
+
+// for the administrator to create junk food;
 public class CreateJunkFoodBl {
     private static final Scanner scanner = new Scanner(System.in);
     // Datentyp der Elemente in der Liste ist Generics <CreateJunkFood>;
     private final List<CreateJunkFood> foodList = new ArrayList<>();
 
     public void toAdmin() {
-        // Objekt vom CreateJunkFoodBl erzeugen
+        // create object from CreateJunkFoodBl;
         CreateJunkFoodBl createJunkFoodBl = new CreateJunkFoodBl();
-        // Hauptmenü Administrator;
+        // main menu administrator;
         System.out.println("---DeliveryServiceManager Admin---");
-        // zuerst das Passwort abfragen;
+        // ask for the password first;
         checkPassword();
         while (true) {
             System.out.printf("%s\n%s\n%s\n%s\n", "Hallo Admin! Was willst du tun?"
@@ -50,7 +48,7 @@ public class CreateJunkFoodBl {
     }
 
 
-    // JunkFood erstellen;
+    // create junk food;
     public void addCreateJunkFoodBl() {
         System.out.println("---JunkFood erstellen---");
         String mealName = getMealName();
@@ -130,22 +128,25 @@ public class CreateJunkFoodBl {
     }
 
 
-    // Preisliste auslesen;
+    // read out price list;
     public void listCreateJunkFoodBl() {
         System.out.println();
+        if (foodList.isEmpty()) {
+            System.out.println("ACHTUNG: Deine Liste ist leer!");
+        }
         for (CreateJunkFood createJunkFood : foodList) {
             printCreateJunkFood(createJunkFood);
         }
     }
 
-    // Das erzeugte JunkFood ausgeben;
+    // Dump the generated JunkFood;
     public void printCreateJunkFood(CreateJunkFood createJunkFood) {
         System.out.println("Name des Gerichtes: " + createJunkFood.getMealName() + ", Grundpreis: € " + createJunkFood.getBasePrice() +
                 ", Anzahl der Zutaten: " + createJunkFood.getIngredientsNumber() + ", Preis per Zutate: € " + createJunkFood.getPricePerIngredient() +
                 ", Preis des Gerichtes: € " + createJunkFood.getTotalPrice());
     }
 
-    // Um das Passwort zu überprüfen (in diesem Fall "deliveryservice");
+    // To check the password (in this case "deliveryservice");
     public void checkPassword() {
         String password;
         int i = 1;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Für den User um etwas zu bestellen;
+// For the user to order something;
 public class OrderBl {
     private static final Scanner scanner = new Scanner(System.in);
     // Datentyp der Elemente in der Liste ist Generics <Order>;
@@ -15,7 +15,7 @@ public class OrderBl {
     public void toUser() {
         // Objekt vom OrderBl erstellen;
         OrderBl orderBl = new OrderBl();
-        // Hauptmenü User;
+        // Main menu user;
         System.out.println("---DeliveryServiceManager User---");
         while (true) {
             System.out.printf("%s\n%s\n%s\n%s\n", "Hallo! Was möchten Sie tun?"
@@ -45,10 +45,11 @@ public class OrderBl {
 
     }
 
-    // Bestellung erstellen;
+    // Create Order;
     public void addOrder() {
         System.out.println("---Ihre Bestellung---");
-        String orderName = getOrderName();
+        String orderName = getNameOfOrder();
+        System.out.println("Wie viele " + orderName + " wollen Sie bestellen?:");
         int numberOfMeals = getNumberOfMeals();
         Order order = new Order(orderName, numberOfMeals);
         orderList.add(order);
@@ -66,12 +67,11 @@ public class OrderBl {
         }
     }
 
-    // ERROR!!!! Die Methode wiederholt sich;
-    private String getOrderName() {
+    private String getNameOfOrder() {
         boolean correctInput = false;
         String orderName = null;
         while (!correctInput) {
-            System.out.println("Was möchten Sie bestellen?");//---> Diese Meldung kommt 2 mal hintereinander;
+            System.out.println("Was möchten Sie bestellen?");
             System.out.println("Pizza, Burger oder Hotdog?");
             orderName = scanner.nextLine();
             if (!(orderName.equalsIgnoreCase("Pizza") || orderName.equalsIgnoreCase("Burger") ||
@@ -87,7 +87,6 @@ public class OrderBl {
         boolean correctInput = false;
         String numberOfMeals = null;
         while (!correctInput) {
-            System.out.println("Wie viele " + getOrderName() + "  wollen Sie bestellen?:");
             numberOfMeals = scanner.nextLine();
             if (numberOfMeals.length() >= 1) {
                 if (!Character.isDigit(numberOfMeals.charAt(0))) {
@@ -101,14 +100,18 @@ public class OrderBl {
     }
 
 
-    // Liste der Bestellungen auslesen;
+    // read out the list of orders;
     public void listOrder() {
+        // The warning if the list is empty is written about it;
+        if (orderList.isEmpty()) {
+            System.out.println("ACHTUNG: Ihre Liste der Bestellungen ist leer!");
+        }
         for (Order order : orderList) {
             printOrder(order);
         }
     }
 
-    // Bestellungen ausgeben;
+    // Issue orders;
     public void printOrder(Order order) {
         System.out.println("Sie haben " + order.getNumberOfMeals() + " " + order.getOrderName()
                 + " bestellt!");

@@ -1,6 +1,6 @@
 package model;
 
-// JunkFood modellieren;
+// Modeling JunkFood;
 public class CreateJunkFood {
     private String mealName;
     private double basePrice;
